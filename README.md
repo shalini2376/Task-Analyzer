@@ -2,79 +2,52 @@
 
 A Django-powered mini-application that analyzes tasks based on urgency, importance, effort, and dependencies — helping you decide what to work on first.
 
-📌 Table of Contents
-
-Overview
-
-Features
-
-Tech Stack
-
-Project Structure
-
-Scoring Algorithm Explanation
-
-API Endpoints
-
-Frontend Usage
-
-Setup & Installation
-
-Example JSON Input
-
-Future Enhancements
+---
 
 🚀 Overview
 
 The Smart Task Analyzer is a task-prioritization tool that intelligently analyzes a list of tasks using a custom scoring algorithm.
 Each task is evaluated by:
 
-Urgency (how soon it’s due)
+- Urgency (how soon it’s due)
+- Importance (1–10 scale)
+- Effort (estimated hours)
+- Dependencies (blocked tasks get lower priority)
 
-Importance (1–10 scale)
+ It then returns:
 
-Effort (estimated hours)
+- A sorted list of tasks based on priority
+- A Top 3 task suggestion list with human-readable explanations
+- This project demonstrates backend logic, edge-case handling, API creation, and basic frontend interaction.
 
-Dependencies (blocked tasks get lower priority)
-
-It then returns:
-
-A sorted list of tasks based on priority
-
-A Top 3 task suggestion list with human-readable explanations
-
-This project demonstrates backend logic, edge-case handling, API creation, and basic frontend interaction.
+---
 
 ✨ Features
+
 🔹 Backend (Django)
 
-Custom scoring algorithm
+- Custom scoring algorithm
+- Robust handling of missing/invalid data
+- Two fully functional API endpoints:
 
-Robust handling of missing/invalid data
+👉 /api/tasks/analyze/ → Score & sort tasks
 
-Two fully functional API endpoints:
-
-/api/tasks/analyze/ → Score & sort tasks
-
-/api/tasks/suggest/ → Recommend top 3 tasks with explanations
+👉 /api/tasks/suggest/ → Recommend top 3 tasks with explanations
 
 🔹 Frontend (HTML, CSS, JavaScript)
 
-JSON textarea for task input
-
-“Analyze Tasks” & “Suggest Top 3” buttons
-
-Beautiful dark-themed UI
-
-Color-coded priority cards (high/medium/low)
-
+- JSON textarea for task input
+- “Analyze Tasks” & “Suggest Top 3” buttons
+- Beautiful dark-themed UI
+- Color-coded priority cards (high/medium/low)
+  
 Built-in sorting strategies:
 
-Smart Score (default)
+- Smart Score (default)
+- Fastest Wins
+- Deadline Driven
 
-Fastest Wins
-
-Deadline Driven
+--- 
 
 🛠 Tech Stack
 
@@ -83,7 +56,10 @@ Frontend: HTML, CSS, Vanilla JavaScript
 Database: SQLite
 Tools: Fetch API, JSON parsing
 
+--- 
 📁 Project Structure
+
+```
 task-analyzer/
 ├── backend/
 │   ├── settings.py
@@ -102,6 +78,9 @@ task-analyzer/
 ├── manage.py
 └── db.sqlite3
 
+```
+--- 
+
 🧮 Scoring Algorithm Explanation
 
 Each task receives a priority score based on four factors:
@@ -113,9 +92,9 @@ Due today/tomorrow	+60
 Due in ≤3 days	+40
 Due in ≤7 days	+20
 Later	+0
+
 2️⃣ Importance (1–10)
 score += importance * 7
-
 
 Importance is weighted heavily because a task’s significance should strongly influence its priority.
 
@@ -130,55 +109,56 @@ Quick tasks receive a “quick win” bonus.
 4️⃣ Dependencies
 score -= 15
 
-
 Tasks with dependencies get reduced priority because they might be blocked.
 
+--- 
+
 🔌 API Endpoints
+
 📍 1. Analyze Tasks
 
-POST → /api/tasks/analyze/
+👉 POST → /api/tasks/analyze/
 
-Input:
+- Input:
 A JSON array of tasks.
 
-Output:
+- Output:
 
 Each task with an added score
-
 Sorted by priority (descending)
 
 📍 2. Suggest Top 3 Tasks
 
-POST → /api/tasks/suggest/
+👉 POST → /api/tasks/suggest/
 
-Output:
+- Output:
 Top 3 prioritized tasks for “today”, with:
 
 Score
 
 Natural language explanation (urgency, importance, effort, blocking status)
 
+---
+
 💻 Frontend Usage
 
-Run Django server:
+1. Run Django server:
 
-python manage.py runserver
+2. python manage.py runserver
 
+3. Open: http://127.0.0.1:8000/
 
-Open:
+4. Paste JSON into the textarea.
 
-http://127.0.0.1:8000/
+5. Click:
 
+👉 Analyze Tasks → Score and sort
 
-Paste JSON into the textarea.
-
-Click:
-
-Analyze Tasks → Score and sort
-
-Suggest Top 3 → Best 3 tasks with explanations
+👉 Suggest Top 3 → Best 3 tasks with explanations
 
 Results appear on the right side as styled cards.
+
+--- 
 
 📝 Example JSON Input
 [
@@ -198,15 +178,16 @@ Results appear on the right side as styled cards.
   }
 ]
 
+--- 
+
 🧩 Setup & Installation
 1️⃣ Clone the repository
-git clone <your-repo-url>
+git clone https://github.com/shalini2376/Task-Analyzer
 cd task-analyzer
 
 2️⃣ Create virtual environment
 python -m venv venv
 venv\Scripts\activate   (Windows)
-source venv/bin/activate  (Mac/Linux)
 
 3️⃣ Install dependencies
 pip install django
@@ -221,6 +202,8 @@ python manage.py runserver
 6️⃣ Open the app
 http://127.0.0.1:8000/
 
+--- 
+
 🚀 Future Enhancements
 
 Form-based UI (no JSON required)
@@ -234,6 +217,8 @@ Add user authentication
 Gantt chart or timeline visualization
 
 Machine-learning–based scoring system
+
+---
 
 🎉 Final Notes
 
