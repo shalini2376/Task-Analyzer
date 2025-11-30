@@ -6,7 +6,7 @@ const sortingStrategySelect = document.getElementById("sortingStrategy")
 
 const API_BASE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
     ? "http://127.0.0.1:8000/api/tasks"
-    : "https://YOUR-RENDER-APP-NAME.onrender.com/api/tasks"
+    : "https://task-analyzer-mlwb.onrender.com/api/tasks"
 
 
 function safeParseJSON(inputText) {
